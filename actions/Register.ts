@@ -3,14 +3,14 @@ import * as z from "zod";
 import bcrypt from "bcrypt";
 import { RegisterSchema } from "@/schema/formSchema";
 import { getUserByEmail } from "@/data/getUserByEmail";
-import users from "../mongo/schemas/User";
-import mongooseConnect from "@/lib/mongooseConnect";
+/* import users from "../mongo/schemas/User";
+import mongooseConnect from "@/lib/mongooseConnect"; */
 
 /* TODO: Convert this action to prisma using mongo */
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
-  await mongooseConnect();
-
+  /*  await mongooseConnect();
+   */
   const validatedFields = RegisterSchema.safeParse(values);
 
   /* Data Credentials Validation */
