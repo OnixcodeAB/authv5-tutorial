@@ -61,7 +61,7 @@ const LoginForm = () => {
       showSocial
     >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" autoComplete="off">
           <div className="space-y-4">
             <FormField
               control={form.control}
@@ -73,6 +73,7 @@ const LoginForm = () => {
                     <Input
                       {...field}
                       type="email"
+                      autoComplete="off"
                       placeholder="john.doe@gmail.com"
                       disabled={isPending}
                     />
@@ -91,6 +92,7 @@ const LoginForm = () => {
                     <Input
                       {...field}
                       type="password"
+                      autoComplete="off"
                       placeholder="*********"
                       disabled={isPending}
                     />

@@ -3,6 +3,7 @@ import * as z from "zod";
 import bcrypt from "bcrypt";
 import { RegisterSchema } from "@/schema/formSchema";
 import { getUserByEmail } from "@/data/getUserByEmail";
+import { db } from "@/lib/db";
 /* import users from "../mongo/schemas/User";
 import mongooseConnect from "@/lib/mongooseConnect"; */
 
@@ -28,21 +29,11 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  /* Create user */
-  const newUser = new users({
-    user: {
-      name,
-      email,
-      password: hashedPassword,
-    },
+  /* Create user and save the user in the database */
+  await db.user.create({
+    data: { name, email, password: hashedPassword },
   });
 
-  /* Save new user In the database */
-
-  try {
-    await newUser.save();
-    return { success: "User Create!" };
-  } catch (err: any) {
-    return { error: err.stack };
-  }
+  //TODO: Send verification token email
+  return { success: "User Created" };
 };
