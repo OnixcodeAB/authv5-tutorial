@@ -4,8 +4,8 @@ import bcrypt from "bcrypt";
 import { RegisterSchema } from "@/schema/formSchema";
 import { getUserByEmail } from "@/data/getUserByEmail";
 import { db } from "@/lib/db";
-/* import users from "../mongo/schemas/User";
-import mongooseConnect from "@/lib/mongooseConnect"; */
+import { generateVerificationToken } from "@/lib/token";
+import { sendVerificationEmail } from "@/lib/mail";
 
 /* TODO: Convert this action to prisma using mongo */
 
@@ -34,6 +34,10 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     data: { name, email, password: hashedPassword },
   });
 
+  const veryficationToken = await generateVerificationToken(email);
+
   //TODO: Send verification token email
-  return { success: "User Created" };
+  sendVerificationEmail(veryficationToken.email, veryficationToken.token);
+
+  return { success: "Confirmation Email Send" };
 };
