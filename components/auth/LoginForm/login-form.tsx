@@ -27,7 +27,7 @@ const LoginForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
-  
+
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use with different provider!"
@@ -102,6 +102,9 @@ const LoginForm = () => {
                       disabled={isPending}
                     />
                   </FormControl>
+                  <Button size="sm" variant="link" asChild>
+                    <Link href="/auth/reset"></Link>
+                  </Button>
                   <FormMessage />
                   <Button
                     size="sm"
