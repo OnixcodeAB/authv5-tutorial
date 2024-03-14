@@ -6,6 +6,7 @@ import authConfig from "./auth.config";
 import { db } from "./lib/db";
 import { getUserById } from "@/data/getUserById";
 import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
+import { UserRole } from "@prisma/client";
 
 export const {
   handlers: { GET, POST },
@@ -60,6 +61,9 @@ export const {
         session.user.id = token.sub;
         session.user.role = token.role;
       }
+      if (session.user) {
+        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled;
+      }
 
       return session;
     },
@@ -71,6 +75,7 @@ export const {
       if (!existingUser) return token;
 
       token.role = existingUser.role;
+      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 
       return token;
     },
