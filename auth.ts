@@ -6,7 +6,6 @@ import authConfig from "./auth.config";
 import { db } from "./lib/db";
 import { getUserById } from "@/data/getUserById";
 import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
-import { UserRole } from "@prisma/client";
 
 export const {
   handlers: { GET, POST },
