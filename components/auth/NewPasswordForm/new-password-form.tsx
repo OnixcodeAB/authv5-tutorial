@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { NewPasswordSchema } from "@/schema/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FormError from "@/components/FormHandlers/Error/form-error";
+import {FormError} from "@/components/FormHandlers/Error/form-error";
 import { FormSuccess } from "@/components/FormHandlers/Success/form-success";
 import { newPassword } from "@/actions/new-password";
 import { useSearchParams } from "next/navigation";
@@ -44,8 +44,8 @@ const NewPasswordForm = () => {
 
     startTransition(() => {
         newPassword(values, token).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
   };

@@ -1,6 +1,6 @@
 "use client";
 
-import FormError from "@/components/FormHandlers/Error/form-error";
+import {FormError} from "@/components/FormHandlers/Error/form-error";
 import { useCurrentRole } from "@/hooks/use-current-role";
 import { UserRole } from "@prisma/client";
 import React from "react";

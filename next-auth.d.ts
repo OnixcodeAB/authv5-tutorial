@@ -19,5 +19,6 @@ declare module "next-auth/jwt" {
       /** OpenID ID Token */
       role: "ADMIN" | "USER";
       isTwoFactorEnabled: boolean
+      isOAuth: boolean
     }
   }

@@ -6,7 +6,7 @@ import { BeatLoader } from "react-spinners";
 import { useSearchParams } from "next/navigation";
 import { newVerification } from "@/actions/verification-token";
 import { FormSuccess } from "../FormHandlers/Success/form-success";
-import FormError from "../FormHandlers/Error/form-error";
+import {FormError} from "../FormHandlers/Error/form-error";
 
 const NewVerificationForm = () => {
   const [error, setError] = useState<string | undefined>();
@@ -23,8 +23,8 @@ const NewVerificationForm = () => {
 
     newVerification(token as string)
       .then((data) => {
-        setSuccess(data.success);
-        setError(data.error);
+        setSuccess(data?.success);
+        setError(data?.error);
       })
       .catch(() => {
         setError("Somenthing went wrong");

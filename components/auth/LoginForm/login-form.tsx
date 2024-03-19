@@ -18,7 +18,7 @@ import { z } from "zod";
 import { LoginSchema } from "@/schema/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import FormError from "@/components/FormHandlers/Error/form-error";
+import {FormError} from "@/components/FormHandlers/Error/form-error";
 import { FormSuccess } from "@/components/FormHandlers/Success/form-success";
 import { login } from "@/actions/Login";
 

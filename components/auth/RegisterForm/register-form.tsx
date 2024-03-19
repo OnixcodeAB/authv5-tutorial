@@ -19,7 +19,7 @@ import { z } from "zod";
 import { RegisterSchema } from "@/schema/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import FormError from "@/components/FormHandlers/Error/form-error";
+import {FormError} from "@/components/FormHandlers/Error/form-error";
 import { FormSuccess } from "@/components/FormHandlers/Success/form-success";
 import { register } from "@/actions/Register";
 
