@@ -18,7 +18,7 @@ import { z } from "zod";
 import { LoginSchema } from "@/schema/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import {FormError} from "@/components/FormHandlers/Error/form-error";
+import { FormError } from "@/components/FormHandlers/Error/form-error";
 import { FormSuccess } from "@/components/FormHandlers/Success/form-success";
 import { login } from "@/actions/Login";
 
@@ -28,7 +28,7 @@ const LoginForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
-
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
@@ -49,7 +49,7 @@ const LoginForm = () => {
     setSuccess("");
 
     startTransition(() => {
-      login(values)
+      login(values, callbackUrl)
         .then((data) => {
           if (data?.error) {
             form.reset();

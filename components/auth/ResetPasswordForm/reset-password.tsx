@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { ResetSchema } from "@/schema/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FormError from "@/components/FormHandlers/Error/form-error";
+import {FormError} from "@/components/FormHandlers/Error/form-error";
 import { FormSuccess } from "@/components/FormHandlers/Success/form-success";
 import reset from "@/actions/reset";
 
@@ -39,8 +39,8 @@ const ResetForm = () => {
 
     startTransition(() => {
       reset(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
   };

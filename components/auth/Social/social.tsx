@@ -8,14 +8,15 @@ import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 
 const Social = () => {
   const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
   /* const callbackUrls = searchParams.get("callbackUrl") */
 
   // Functioin to login with Google account or Github
-  const onClick = (provider: "google"|"github") => {
-    signIn(provider,{
-      callbackUrl: DEFAULT_LOGIN_REDIRECT
-    })
-    }
+  const onClick = (provider: "google" | "github") => {
+    signIn(provider, {
+      callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+    });
+  };
 
   return (
     <div className="flex items-center w-full gap-x-2">
